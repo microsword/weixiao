@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间,作用就是对sql进行分类化的管理,理解为sql隔离
+    注意:使用mapper代理开发时，namespace有特殊作用
+ -->
+<mapper namespace="com.wx.getdata.BeanMapper">
+
+
+<insert id="insertBean" useGeneratedKeys="true" parameterType="java.util.List">
+	<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+		SELECT
+		LAST_INSERT_ID()
+	</selectKey>
+	insert into t_data (type,name,tel,addr,pname,cname,aname,pic_url,l,w) 
+	values
+	<foreach collection="list" item="item" index="index" separator="," >
+		(#{item.type},#{item.name},#{item.tel},#{item.addr},#{item.pname},#{item.cname},#{item.aname},#{item.pic_url},#{item.l},#{item.w})
+	</foreach>
+</insert>
+
+
+
+
+</mapper>

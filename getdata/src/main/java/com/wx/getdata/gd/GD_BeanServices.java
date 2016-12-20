@@ -1,4 +1,4 @@
-package com.wx.getdata;
+package com.wx.getdata.gd;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
@@ -9,9 +9,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class BeanServices {
+public class GD_BeanServices {
 	
-	public void insertUser(List<Bean> bean) {
+	public void insertUser(List<GD_Bean> bean) {
         // mybatis的配置文件
         String resource = "config.xml";
         InputStream inputStream = null;
@@ -29,10 +29,10 @@ public class BeanServices {
             // 第一个参数：映射文件中的statement的Id,等于namespace + "." + statement的id;
             // 第二个参数:指定和映射文件中所匹配的parameterType类型的参数;
             // sqlSession.selectOne结果是与映射文件所匹配的resultType类型的对象;
-            BeanMapper beanmapper = sqlSession.getMapper(BeanMapper.class);
+            GD_BeanMapper beanmapper = sqlSession.getMapper(GD_BeanMapper.class);
             beanmapper.insertBean(bean);
             //sqlSession.insert("test.insertBean", bean);
-            //执行提交事务
+            //执行提交事务 
             sqlSession.commit();
             
             //项目中经常需要 获取新增的用户的主键

@@ -1,6 +1,6 @@
-package com.wx.getdata;
+package com.wx.getdata.gd;
 
-public class Bean {
+public class GD_Bean {
 	private Integer id;
 	private String type;
 	private String name;

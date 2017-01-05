@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间,作用就是对sql进行分类化的管理,理解为sql隔离
+    注意:使用mapper代理开发时，namespace有特殊作用
+ -->
+<mapper namespace="com.wx.getdata.lvmama.Mapper">
+<resultMap id="res" type="com.wx.getdata.entity.Activity">
+	<result column="begin_time" jdbcType="DATE" property="begin_time" javaType="java.util.Date" />
+	<result column="end_time" jdbcType="DATE" property="end_time" javaType="java.util.Date" />
+	<result column="join_begin_time" jdbcType="DATE" property="join_begin_time" javaType="java.util.Date" />
+	<result column="join_end_time" jdbcType="DATE" property="join_end_time" javaType="java.util.Date" />
+	<result column="created_at" jdbcType="DATE" property="created_at" javaType="java.util.Date" />
+</resultMap>
+<insert id="insertActivity" parameterType="java.util.List">
+	insert into activity(
+	title,
+	logo,
+	publish,
+	province_id,
+	city_id,
+	begin_time,
+	end_time,
+	join_begin_time,
+	join_end_time,
+	status,
+	created_at,
+	create_user,
+	min_fee,
+	isgroup,
+	type,
+	age,
+	businessid,
+	link
+	)
+	values
+	<foreach collection="list" item="item" index="index" separator="," >
+		(#{item.title},#{item.logo},#{item.publish},#{item.province_id},#{item.city_id},#{item.begin_time,jdbcType=DATE},
+		#{item.end_time,jdbcType=DATE},#{item.join_begin_time,jdbcType=DATE},#{item.join_end_time,jdbcType=DATE},
+		#{item.status},#{item.created_at},
+		#{item.created_user},#{item.min_fee},#{item.isgroup},#{item.type},#{item.age},#{item.businessid},
+		#{item.link_url})
+	</foreach>
+</insert>
+
+
+</mapper>
